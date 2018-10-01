@@ -9,7 +9,8 @@ models = ['linear_regression',
     "ridge_poly2",
     "mlp",
     "dtree",
-    "gbm"]
+    "gbm",
+    "xgboost"]
 
 for model in models:
     os.system('az ml experiment submit -c local ./8-evaluate-model.py {}'.format(model))

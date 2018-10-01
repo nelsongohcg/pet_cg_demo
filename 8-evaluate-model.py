@@ -103,7 +103,8 @@ if __name__=='__main__':
     test = pd.read_csv(os.path.join(aml_dir, 'nyc_demand_test.csv'), parse_dates=['timeStamp'])
 
     # Load trained model pipeline
-    with open(os.path.join(aml_dir, model_name + '.pkl'), 'rb') as f:
+    model_dir = "C:/Users/nelgoh/Desktop/Resources/Petronas/energy_demand_forecast/EnergyDemandForecast/outputs/models/"
+    with open(os.path.join(model_dir, model_name + '.pkl'), 'rb') as f:
         model = pickle.load(f)
 
     # generate forecasts on the test set
@@ -132,9 +133,6 @@ if __name__=='__main__':
     plot_metric('MPE', performance_metrics)
 
     # Output the predictions dataframe
-    with open(os.path.join(aml_dir, model_name + '_predictions.pkl'), 'wb') as f:
+    prediction_df_dir = "C:/Users/nelgoh/Desktop/Resources/Petronas/energy_demand_forecast/EnergyDemandForecast/outputs/prediction_dfs/"
+    with open(os.path.join(prediction_df_dir, model_name + '_predictions.pkl'), 'wb') as f:
         pickle.dump(predictions_df, f)
-
-    # Store the trained model in the Outputs folder.
-    with open(os.path.join('.', 'outputs', model_name + '.pkl'), 'wb') as f:    
-        pickle.dump(model, f)
